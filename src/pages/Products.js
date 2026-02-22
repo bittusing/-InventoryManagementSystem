@@ -33,6 +33,9 @@ const Products = () => {
     }
   };
 
+  // Uncomment if needed in future
+  // fetchGodowns();
+
   const viewStock = async (product) => {
     try {
       setSelectedProduct(product);

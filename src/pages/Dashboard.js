@@ -13,7 +13,7 @@ const Dashboard = () => {
   });
   const [recentSales, setRecentSales] = useState([]);
   const [recentPurchases, setRecentPurchases] = useState([]);
-  const [topProducts, setTopProducts] = useState([]);
+  // const [topProducts, setTopProducts] = useState([]);
 
   useEffect(() => {
     fetchStats();

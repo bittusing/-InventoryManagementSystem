@@ -7,13 +7,26 @@ import { hasAnyPermission } from '../utils/permissions';
 const Layout = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Changed default to false for mobile
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   useEffect(() => {
     fetchNotifications();
+    
+    // Set sidebar open by default on desktop
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const fetchNotifications = async () => {
@@ -52,6 +65,12 @@ const Layout = () => {
 
   return (
     <div className="layout">
+      {/* Backdrop for mobile */}
+      <div 
+        className={`sidebar-backdrop ${sidebarOpen ? 'show' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+      ></div>
+      
       <aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -117,6 +136,7 @@ const Layout = () => {
                   top: '50px',
                   right: 0,
                   width: '320px',
+                  maxWidth: '90vw',
                   background: 'white',
                   borderRadius: '12px',
                   boxShadow: '0 8px 24px rgba(0,0,0,0.15)',

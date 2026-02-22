@@ -24,18 +24,6 @@ const Products = () => {
     }
   };
 
-  const fetchGodowns = async () => {
-    try {
-      const { data } = await api.get('/godowns');
-      console.log('Godowns:', data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  // Uncomment if needed in future
-  // fetchGodowns();
-
   const viewStock = async (product) => {
     try {
       setSelectedProduct(product);

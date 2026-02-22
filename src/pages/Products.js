@@ -3,7 +3,7 @@ import api from '../config/api';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [godowns, setGodowns] = useState([]);
+  // const [godowns, setGodowns] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showStockModal, setShowStockModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -12,7 +12,7 @@ const Products = () => {
 
   useEffect(() => {
     fetchProducts();
-    fetchGodowns();
+    // fetchGodowns();
   }, []);
 
   const fetchProducts = async () => {
@@ -27,7 +27,7 @@ const Products = () => {
   const fetchGodowns = async () => {
     try {
       const { data } = await api.get('/godowns');
-      setGodowns(data);
+      console.log('Godowns:', data);
     } catch (error) {
       console.error('Error:', error);
     }

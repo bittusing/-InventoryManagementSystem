@@ -20,10 +20,11 @@ const Purchases = () => {
   }, []);
 
   useEffect(() => {
-    if (showModal) {
+    if (showModal && purchases.length >= 0) {
       generatePurchaseNumber();
     }
-  }, [showModal, purchases]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModal]);
 
   const generatePurchaseNumber = () => {
     const year = new Date().getFullYear();

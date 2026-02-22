@@ -27,10 +27,11 @@ const Sales = () => {
   }, []);
 
   useEffect(() => {
-    if (showModal) {
+    if (showModal && sales.length >= 0) {
       generateInvoiceNumber();
     }
-  }, [showModal, sales]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModal]);
 
   useEffect(() => {
     if (formData.godown) {

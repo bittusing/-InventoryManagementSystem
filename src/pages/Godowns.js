@@ -8,8 +8,8 @@ const Godowns = () => {
   const [formData, setFormData] = useState({ name: '', code: '', address: '', city: '', state: '', pincode: '', manager: '', contact: '' });
 
   const canCreate = checkPermission('godowns', 'create');
-  const canEdit = checkPermission('godowns', 'edit');
-  const canDelete = checkPermission('godowns', 'delete');
+  // const canEdit = checkPermission('godowns', 'edit');
+  // const canDelete = checkPermission('godowns', 'delete');
 
   useEffect(() => {
     fetchGodowns();
